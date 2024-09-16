@@ -3,9 +3,9 @@
 
  - Homework 2:
    1. Performed Branch Analysis
-       *Studied a block of pseudocode and converted it to a graph showing every possible path*
-       ```mermaid
-       flowchart TD
+      *Studied a block of pseudocode and converted it to a graph showing every possible path*
+      ```mermaid
+      flowchart TD
           start(((StandardDeviation))) --> isA
     
           isA{valueList empty} --> |Yes| errorA[error]
@@ -54,12 +54,12 @@
     
           isN --> |Yes| errorN[error]
           isN --> |No| popStdDev[population Std Dev]
-       ```
+      ```
    2. Converted Pseudocode to Operational Code
-      *Converted the pseudocode to operational, well-structured { LANGUAGE YOU USED }*
-      { LINK TO PSEUDOCODE FILE } 
-   2. Wrote Unit Tests
+      *Converted the pseudocode to operational, well-structured Java code*
+      pseudocode.txt
+   3. Wrote Unit Tests
       *Wrote {# of Tests} { NUnit, JUnit, or PyTest } unit tests and achieved 100% coverage of every branch*
-   3. Performed Coverage Analysis
+   4. Performed Coverage Analysis
       *Achieved 100% coverage of all branches*
       { SCREENSHOT OF YOUR COVERAGE ANALYSIS HERE }
