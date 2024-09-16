@@ -1,5 +1,6 @@
 package org.example;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -186,6 +187,10 @@ class StandardDeviationTests {
         assertEquals(expectedOutput, outContent.toString());
     }
 
+    @AfterEach
+    public void tearDown() {
+        System.setOut(originalOut);
+    }
 
     
 }
