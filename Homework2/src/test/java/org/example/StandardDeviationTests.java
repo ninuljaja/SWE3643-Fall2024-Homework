@@ -1,12 +1,17 @@
 package org.example;
 
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,14 +20,13 @@ class StandardDeviationTests {
     @DisplayName("computeMean receives Null Value List - Throw Exception")
     void StandardDeviation_ComputeMean_ReceiveNullValueList_ThrowException() {
         // Arrange
+        String expectedMessage = "values parameter cannot be null or empty";
         int[] values = null;
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeMean(values);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
-
         // Assert
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -33,15 +37,14 @@ class StandardDeviationTests {
     void StandardDeviation_ComputeMean_ReceiveEmptyValueList_ThrowException() {
         // Arrange
         int[] values = {};
+        String expectedMessage = "values parameter cannot be null or empty";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeMean(values);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
     @Test
@@ -49,15 +52,14 @@ class StandardDeviationTests {
     void StandardDeviation_computeSquareOfDifferences_ReceiveNullValueList_ThrowException() {
         // Arrange
         int[] values = null;
+        String expectedMessage = "values parameter cannot be null or empty";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeSquareOfDifferences(values, 0);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
@@ -66,15 +68,14 @@ class StandardDeviationTests {
     void StandardDeviation_computeSquareOfDifferences_ReceiveEmptyValueList_ThrowException() {
         // Arrange
         int[] values = {};
+        String expectedMessage = "values parameter cannot be null or empty";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeSquareOfDifferences(values, 0);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
@@ -83,15 +84,14 @@ class StandardDeviationTests {
     void StandardDeviation_computeStandardDeviation_ReceiveNullValueList_ThrowException() {
         // Arrange
         int[] values = null;
+        String expectedMessage = "values parameter cannot be null or empty";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeStandardDeviation(values, false);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
 
@@ -100,15 +100,14 @@ class StandardDeviationTests {
     void StandardDeviation_computeStandardDeviation_ReceiveEmptyValueList_ThrowException() {
         // Arrange
         int[] values = {};
+        String expectedMessage = "values parameter cannot be null or empty";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeStandardDeviation(values, false);
         });
-        String expectedMessage = "values parameter cannot be null or empty";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
     @Test
@@ -116,15 +115,14 @@ class StandardDeviationTests {
     void StandardDeviation_computeSampleStandardDeviation_ReceiveOneValue_ThrowException() {
         // Arrange
         int[] values = {1};
+        String expectedMessage = "numValues is too low (sample must be >= 1, population must be >= 2)";
         // Act
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
             StandardDeviation.computeSampleStandardDeviation(values);
         });
-        String expectedMessage = "numValues is too low (sample must be >= 1, population must be >= 2)";
         String actualMessage = exception.getMessage();
 
         // Assert
-
         assertTrue(actualMessage.contains(expectedMessage));
     }
     @Test
@@ -135,9 +133,7 @@ class StandardDeviationTests {
         // Act
         double result = StandardDeviation.computePopulationStandardDeviation(values);
 
-
         // Assert
-
         assertEquals(0.0, result);
     }
 
@@ -149,9 +145,7 @@ class StandardDeviationTests {
         // Act
         double result = StandardDeviation.computeSampleStandardDeviation(values);
 
-
         // Assert
-
         assertEquals(1.58113883, result, 0.00000001);
     }
 
@@ -165,9 +159,9 @@ class StandardDeviationTests {
 
 
         // Assert
-
         assertEquals(1.414213562, result, 0.000000001);
     }
+
 
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
@@ -179,11 +173,14 @@ class StandardDeviationTests {
     @Test
     @DisplayName("test main method")
     void StandardDeviation_testMainMethod() {
+        // Arrange
         String expectedOutput = "Sample StdDev = 1.5811388300841898" + System.lineSeparator() +
                 "Population StdDev = 2.9832867780352594" + System.lineSeparator();
 
+        // Act
         StandardDeviation.main(new String[] {});
 
+        // Assert
         assertEquals(expectedOutput, outContent.toString());
     }
 
@@ -191,6 +188,33 @@ class StandardDeviationTests {
     public void tearDown() {
         System.setOut(originalOut);
     }
+
+    private static Stream<Arguments> inputsAndResults() {
+
+        return Stream.of(
+                Arguments.of(-2.5, "Below Average"),
+                Arguments.of(-2.1, "Below Average"),
+                Arguments.of(-2.0, "Near Average"),
+                Arguments.of(-1.9, "Near Average"),
+                Arguments.of(-0.1, "Near Average"),
+                Arguments.of(0.0, "Exactly Average"),
+                Arguments.of(0.1, "Near Average"),
+                Arguments.of(1.9, "Near Average"),
+                Arguments.of(2.0, "Near Average"),
+                Arguments.of(2.1, "Above Average"),
+                Arguments.of(2.5, "Above Average")
+        );
+    }
+    @ParameterizedTest
+    @DisplayName("parameterized unit test")
+    @MethodSource("inputsAndResults")
+    void StandardDeviation_interpretStandardDeviation_ReceiveStdDevValue_ReturnLabel(double stdDev, String expectedLabel){
+        // Act
+        String actualLabel = StandardDeviation.interpretStandardDeviation(stdDev);
+        // Assert
+        assertEquals(expectedLabel, actualLabel);
+    }
+
 
     
 }
