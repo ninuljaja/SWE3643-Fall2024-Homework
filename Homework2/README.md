@@ -2,7 +2,7 @@
 ## Nino Tkabladze
 
 # Homework 2:
-  1. Performed Branch Analysis
+  1. Performed Branch Analysis  
      *Studied a block of pseudocode and converted it to a graph showing every possible path*
      ```mermaid
      flowchart TD
@@ -55,11 +55,11 @@
          isN --> |Yes| errorN[error]
          isN --> |No| popStdDev[population Std Dev]
      ```
-  2. Converted Pseudocode to Operational Code
+  2. Converted Pseudocode to Operational Code  
      *Converted the pseudocode to operational, well-structured Java code*
      https://github.com/ninuljaja/SWE3643-Fall2024-Homework/blob/8af1af670679f05ef102242dcd3bab4b38fd87d4/pseudocode.txt
-  3. Wrote Unit Tests
+  3. Wrote Unit Tests  
      *Wrote 12 JUnit unit tests and achieved 100% coverage of every branch*
-  4. Performed Coverage Analysis
+  4. Performed Coverage Analysis  
      *Achieved 100% coverage of all branches*
      ![img.png](img.png)
