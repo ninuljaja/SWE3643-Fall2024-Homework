@@ -59,7 +59,7 @@
      *Converted the pseudocode to operational, well-structured Java code*
      https://github.com/ninuljaja/SWE3643-Fall2024-Homework/blob/8af1af670679f05ef102242dcd3bab4b38fd87d4/pseudocode.txt
   3. Wrote Unit Tests
-     *Wrote {# of Tests} { NUnit, JUnit, or PyTest } unit tests and achieved 100% coverage of every branch*
+     *Wrote 12 JUnit unit tests and achieved 100% coverage of every branch*
   4. Performed Coverage Analysis
      *Achieved 100% coverage of all branches*
-     { SCREENSHOT OF YOUR COVERAGE ANALYSIS HERE }
+     ![img.png](img.png)

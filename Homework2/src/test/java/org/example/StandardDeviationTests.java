@@ -47,6 +47,7 @@ class StandardDeviationTests {
         // Assert
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
     @Test
     @DisplayName("computeSquareOfDifferences receives Null Value List - Throw Exception")
     void StandardDeviation_computeSquareOfDifferences_ReceiveNullValueList_ThrowException() {
@@ -110,6 +111,7 @@ class StandardDeviationTests {
         // Assert
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
     @Test
     @DisplayName("computeSampleStandardDeviation receives one value - Throw Exception")
     void StandardDeviation_computeSampleStandardDeviation_ReceiveOneValue_ThrowException() {
@@ -125,6 +127,7 @@ class StandardDeviationTests {
         // Assert
         assertTrue(actualMessage.contains(expectedMessage));
     }
+
     @Test
     @DisplayName("computePopulationStandardDeviation receives one value - std dev should be 0")
     void StandardDeviation_computePopulationStandardDeviation_ReceiveOneValue_ThrowException() {
@@ -162,7 +165,6 @@ class StandardDeviationTests {
         assertEquals(1.414213562, result, 0.000000001);
     }
 
-
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
     private final PrintStream originalOut = System.out;
 
@@ -170,6 +172,7 @@ class StandardDeviationTests {
     public void setUp(){
         System.setOut(new PrintStream(outContent));
     }
+
     @Test
     @DisplayName("test main method")
     void StandardDeviation_testMainMethod() {
@@ -205,6 +208,7 @@ class StandardDeviationTests {
                 Arguments.of(2.5, "Above Average")
         );
     }
+
     @ParameterizedTest
     @DisplayName("parameterized unit test")
     @MethodSource("inputsAndResults")
