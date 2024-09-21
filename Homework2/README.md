@@ -40,7 +40,7 @@
      ```
   2. Converted Pseudocode to Operational Code  
      *Converted the pseudocode to operational, well-structured Java code*  
-     [pseudocode](https://github.com/ninuljaja/SWE3643-Fall2024-Homework/blob/8af1af670679f05ef102242dcd3bab4b38fd87d4/pseudocode.txt)
+     [pseudocode](https://github.com/ninuljaja/SWE3643-Fall2024-Homework/blob/51c627d4de21e644ea02d66d5b8c154ad2bdbd28/Homework2/pseudocode.txt)
   3. Wrote Unit Tests  
      *Wrote 12 JUnit unit tests and achieved 100% coverage of every branch*
   4. Performed Coverage Analysis  
