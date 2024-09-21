@@ -6,54 +6,37 @@
      *Studied a block of pseudocode and converted it to a graph showing every possible path*
      ```mermaid
      flowchart TD
-         start(((StandardDeviation))) --> isA
-    
-         isA{valueList empty} --> |Yes| errorA[error]
-         isA --> |No| isB{valueList empty}
-    
-         isB{valueList empty} --> |Yes| errorB[error]
-         isB --> |No| isC[value in valueList]
-    
-         isC{value in valueList} --> |Yes| sumC[sum += value]
+         
+         FuncA[ENTRY FUNC: Compute Sample Std Dev] --> FuncC
+         FuncB[ENTRY FUNC: Compute Pop Std Dev] --> FuncC
+     
+         FuncC[FUNC Compute Standard Deviation] --> isA
+     
+         isA{is valueList empty?} --> |Yes| errorA[[error]]
+         isA --> |No|FuncD[FUNC Compute Mean of Values] --> isB
+         
+         isB{is valueList empty?} --> |Yes| errorB[[error]]
+         isB --> |No| isC{is value in valueList?}
+        
+         isC --> |Yes| sumC[sum += value]
          sumC --> isC
-         isC --> |No| isD{valueList empty}
-    
-         isD --> |Yes| errorD[error]
-         isD --> |No| isE{value in valueList}
-    
+         isC --> |No| FuncE[FUNC Compute Square of Differences] 
+         FuncE --> isD{is valueList empty?}
+         
+         isD --> |Yes| errorD[[error]]
+         isD --> |No| isE{is value in valueList?}
+     
          isE --> |Yes| squareAccumulatorE[squareAccumulator]
          squareAccumulatorE --> isE
-         isE --> |No| isF{is not population}
-    
+         isE --> |No| FuncF[FUNC Compute Variance]
+         FuncF --> isF{is not population?}
+         
          isF --> |Yes| numValuesF[numValues--] --> isG{numValues<1}
          isF --> |No| isG
-    
-         isG --> |Yes| errorG[error]
+     
+         isG --> |Yes| errorG[[error]]
          isG --> |No| stdDev[stdDev]
-         stdDev --> isH
-    
-         isH{valueList empty} --> |Yes| errorH[error]
-         isH --> |No| isI{valueList empty}
-    
-         isI{valueList empty} --> |Yes| errorI[error]
-         isI --> |No| isJ[value in valueList]
-    
-         isJ{value in valueList} --> |Yes| sumJ[sum += value]
-         sumJ --> isJ
-         isJ --> |No| isK{valueList empty}
-    
-         isK --> |Yes| errorK[error]
-         isK --> |No| isL{value in valueList}
-    
-         isL --> |Yes| squareAccumulatorL[squareAccumulator += squareOfDifference]
-         squareAccumulatorL --> isL
-         isL --> |No| isM{is not population}
-    
-         isM --> |Yes| numValuesM[numValues--] --> isN{numValues<1}
-         isM --> |No| isN
-    
-         isN --> |Yes| errorN[error]
-         isN --> |No| popStdDev[population Std Dev]
+
      ```
   2. Converted Pseudocode to Operational Code  
      *Converted the pseudocode to operational, well-structured Java code*  
