@@ -42,7 +42,7 @@
          isG --> |Yes| errorG[[error]]
          isG --> |No| Variance[compute Variance]
          Variance -->  stdDev[compute stdDev]
-         stdDev --> ReturnStdDev(RETURN Std Dev)
+         stdDev --> ReturnStdDev((RETURN Std Dev))
 
      ```
   2. Converted Pseudocode to Operational Code  
