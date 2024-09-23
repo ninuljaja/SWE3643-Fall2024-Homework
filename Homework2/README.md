@@ -6,9 +6,12 @@
      *Studied a block of pseudocode and converted it to a graph showing every possible path*
      ```mermaid
      flowchart TD
-         
-         FuncA(((ENTRY FUNC: Compute Sample Std Dev))) --> FuncC
-         FuncB(((ENTRY FUNC: Compute Pop Std Dev))) --> FuncC
+        
+         StartA(((START Sample Std Dev))) --> FuncA
+         StartB(((START Population Std Dev))) --> FuncB
+              
+         FuncA[ENTRY FUNC: Compute Sample Std Dev] --> FuncC
+         FuncB[ENTRY FUNC: Compute Population Std Dev] --> FuncC
      
          FuncC[FUNC Compute Standard Deviation] --> isA
      
