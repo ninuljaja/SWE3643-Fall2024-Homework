@@ -23,7 +23,8 @@
         
          isC --> |Yes| sumC[sum += value]
          sumC --> isC
-         isC --> |No| FuncE[FUNC Compute Square of Differences] 
+         isC --> |No| Mean[Compute mean]
+         Mean --> FuncE[FUNC Compute Square of Differences] 
          FuncE --> isD{is valueList empty?}
          
          isD --> |Yes| errorD[[error]]
@@ -31,14 +32,17 @@
      
          isE --> |Yes| squareAccumulatorE[squareAccumulator]
          squareAccumulatorE --> isE
-         isE --> |No| FuncF[FUNC Compute Variance]
+         isE --> |No| SqrOfDiff[Square of Differences]
+         SqrOfDiff --> FuncF[FUNC Compute Variance]
          FuncF --> isF{is not population?}
          
          isF --> |Yes| numValuesF[numValues--] --> isG{numValues<1}
          isF --> |No| isG
      
          isG --> |Yes| errorG[[error]]
-         isG --> |No| stdDev[stdDev]
+         isG --> |No| Variance[compute Variance]
+         Variance -->  stdDev[compute stdDev]
+         stdDev --> ReturnStdDev(RETURN Std Dev)
 
      ```
   2. Converted Pseudocode to Operational Code  
