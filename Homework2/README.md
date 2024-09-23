@@ -51,5 +51,5 @@
   3. Wrote Unit Tests  
      *Wrote 12 JUnit unit tests and achieved 100% coverage of every branch*
   4. Performed Coverage Analysis  
-     *Achieved 100% coverage of all branches*  
-     ![img.png](img.png)
+     *Achieved 100% coverage of all branches*
+     ![img_1.png](img_1.png)

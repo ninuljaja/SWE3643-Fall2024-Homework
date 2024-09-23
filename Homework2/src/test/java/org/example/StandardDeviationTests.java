@@ -214,7 +214,7 @@ class StandardDeviationTests {
     @MethodSource("inputsAndResults")
     void StandardDeviation_interpretStandardDeviation_ReceiveStdDevValue_ReturnLabel(double stdDev, String expectedLabel){
         // Act
-        String actualLabel = StandardDeviation.interpretStandardDeviation(stdDev);
+        String actualLabel = Interpretation.interpretStandardDeviation(stdDev);
         // Assert
         assertEquals(expectedLabel, actualLabel);
     }
