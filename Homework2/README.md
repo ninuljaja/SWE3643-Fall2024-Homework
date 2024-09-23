@@ -7,8 +7,8 @@
      ```mermaid
      flowchart TD
          
-         FuncA[ENTRY FUNC: Compute Sample Std Dev] --> FuncC
-         FuncB[ENTRY FUNC: Compute Pop Std Dev] --> FuncC
+         FuncA(((ENTRY FUNC: Compute Sample Std Dev))) --> FuncC
+         FuncB(((ENTRY FUNC: Compute Pop Std Dev))) --> FuncC
      
          FuncC[FUNC Compute Standard Deviation] --> isA
      
