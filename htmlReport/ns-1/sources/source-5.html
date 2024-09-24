@@ -1,0 +1,193 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > StandardDeviation</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: StandardDeviation (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Branch, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StandardDeviation</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (20/20)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    97.1%
+  </span>
+  <span class="absValue">
+    (33/34)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;//TIP To &lt;b&gt;Run&lt;/b&gt; code, press &lt;shortcut actionId=&quot;Run&quot;/&gt; or
+&nbsp;// click the &lt;icon src=&quot;AllIcons.Actions.Execute&quot;/&gt; icon in the gutter.
+<b class="nc">&nbsp;public class StandardDeviation {</b>
+&nbsp;    public static void main(String[] args) throws IllegalArgumentException {
+<b class="fc">&nbsp;       int[] sampleValues = {9, 6, 8, 5, 7};</b>
+<b class="fc">&nbsp;       double sampleStdDev = computeSampleStandardDeviation(sampleValues);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;Sample StdDev = &quot; + sampleStdDev);</b>
+&nbsp;
+&nbsp;
+<b class="fc">&nbsp;        int[] populationValues = {9, 2, 5, 4, 12, 7, 8, 11, 9, 3, 7, 4, 12, 5, 4, 10, 9, 6, 9, 4};</b>
+<b class="fc">&nbsp;        double popStdDev = computePopulationStandardDeviation(populationValues);</b>
+<b class="fc">&nbsp;        System.out.println(&quot;Population StdDev = &quot; + popStdDev);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    static double computeMean(int[] values) throws IllegalArgumentException {
+<b class="fc">&nbsp;        if (values == null || values.length == 0) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;values parameter cannot be null or empty&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        int sumAccumulator = 0;</b>
+<b class="fc">&nbsp;        for (int value : values) {</b>
+<b class="fc">&nbsp;            sumAccumulator += value;</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return (double) sumAccumulator / values.length;</b>
+&nbsp;    }
+&nbsp;    static double computeSquareOfDifferences(int[] values, double mean) throws IllegalArgumentException {
+<b class="fc">&nbsp;        if (values == null || values.length == 0) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;values parameter cannot be null or empty&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        double squareAccumulator = 0;</b>
+<b class="fc">&nbsp;        for (int value : values) {</b>
+<b class="fc">&nbsp;            double difference = value - mean;</b>
+<b class="fc">&nbsp;            double squareOfDifference = difference * difference;</b>
+<b class="fc">&nbsp;            squareAccumulator += squareOfDifference;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return squareAccumulator;</b>
+&nbsp;    }
+&nbsp;    static double computeVariance(double squareOfDifferences, int numValues, boolean isPopulation) throws IllegalArgumentException {
+<b class="fc">&nbsp;        if(!isPopulation) {</b>
+<b class="fc">&nbsp;            numValues--;</b>
+&nbsp;        }
+<b class="fc">&nbsp;        if(numValues &lt; 1) {</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;numValues is too low (sample must be &gt;= 1, population must be &gt;= 2)&quot;);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return squareOfDifferences / numValues;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    static double computeStandardDeviation(int[] values, boolean isPopulation) throws IllegalArgumentException {
+<b class="fc">&nbsp;        if (values == null || values.length == 0){</b>
+<b class="fc">&nbsp;            throw new IllegalArgumentException(&quot;values parameter cannot be null or empty&quot;);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        double mean = computeMean(values);</b>
+<b class="fc">&nbsp;        double squareOfDifferences = computeSquareOfDifferences(values, mean);</b>
+<b class="fc">&nbsp;        double variance = computeVariance(squareOfDifferences, values.length, isPopulation);</b>
+<b class="fc">&nbsp;        return Math.sqrt(variance);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    static double computeSampleStandardDeviation(int[] values) throws IllegalArgumentException {
+<b class="fc">&nbsp;        return computeStandardDeviation(values, false);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;    static double computePopulationStandardDeviation(int[] values) throws IllegalArgumentException {
+<b class="fc">&nbsp;        return computeStandardDeviation(values, true);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-09-23 19:39</div>
+</div>
+</body>
+</html>

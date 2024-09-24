@@ -1,0 +1,304 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > StandardDeviationTests</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">org.example</a>
+</div>
+
+<h1>Coverage Summary for Class: StandardDeviationTests (org.example)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">StandardDeviationTests</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (21/21)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (60/60)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package org.example;
+&nbsp;
+&nbsp;
+&nbsp;import org.junit.jupiter.api.AfterEach;
+&nbsp;import org.junit.jupiter.api.BeforeEach;
+&nbsp;import org.junit.jupiter.api.Test;
+&nbsp;import org.junit.jupiter.api.DisplayName;
+&nbsp;import org.junit.jupiter.params.ParameterizedTest;
+&nbsp;import org.junit.jupiter.params.provider.Arguments;
+&nbsp;import org.junit.jupiter.params.provider.MethodSource;
+&nbsp;
+&nbsp;import java.io.ByteArrayOutputStream;
+&nbsp;import java.io.PrintStream;
+&nbsp;import java.util.stream.Stream;
+&nbsp;
+&nbsp;import static org.junit.jupiter.api.Assertions.*;
+&nbsp;
+<b class="fc">&nbsp;class StandardDeviationTests {</b>
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeMean receives Null Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_ComputeMean_ReceiveNullValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+<b class="fc">&nbsp;        int[] values = null;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeMean(values);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;        // Assert
+&nbsp;
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;Compute mean receives Empty Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_ComputeMean_ReceiveEmptyValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {};</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeMean(values);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeSquareOfDifferences receives Null Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_computeSquareOfDifferences_ReceiveNullValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = null;</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeSquareOfDifferences(values, 0);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;ComputeSquareOfDifferences receives Empty Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_computeSquareOfDifferences_ReceiveEmptyValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {};</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeSquareOfDifferences(values, 0);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeStandardDeviation receives Null Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_computeStandardDeviation_ReceiveNullValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = null;</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeStandardDeviation(values, false);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeStandardDeviation receives Empty Value List - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_computeStandardDeviation_ReceiveEmptyValueList_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {};</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;values parameter cannot be null or empty&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeStandardDeviation(values, false);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeSampleStandardDeviation receives one value - Throw Exception&quot;)
+&nbsp;    void StandardDeviation_computeSampleStandardDeviation_ReceiveOneValue_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {1};</b>
+<b class="fc">&nbsp;        String expectedMessage = &quot;numValues is too low (sample must be &gt;= 1, population must be &gt;= 2)&quot;;</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        Exception exception = assertThrows(IllegalArgumentException.class, () -&gt; {</b>
+<b class="fc">&nbsp;            StandardDeviation.computeSampleStandardDeviation(values);</b>
+&nbsp;        });
+<b class="fc">&nbsp;        String actualMessage = exception.getMessage();</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertTrue(actualMessage.contains(expectedMessage));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computePopulationStandardDeviation receives one value - std dev should be 0&quot;)
+&nbsp;    void StandardDeviation_computePopulationStandardDeviation_ReceiveOneValue_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {1};</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        double result = StandardDeviation.computePopulationStandardDeviation(values);</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertEquals(0.0, result);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computeSampleStandardDeviation receives valid values - returns std dev&quot;)
+&nbsp;    void StandardDeviation_computeSampleStandardDeviation_ReceiveValidValues_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {1,2,3,4,5};</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        double result = StandardDeviation.computeSampleStandardDeviation(values);</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertEquals(1.58113883, result, 0.00000001);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;computePopulationStandardDeviation receives valid values - returns std dev&quot;)
+&nbsp;    void StandardDeviation_computePopulationStandardDeviation_ReceiveValidValues_ThrowException() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        int[] values = {1,2,3,4,5};</b>
+&nbsp;        // Act
+<b class="fc">&nbsp;        double result = StandardDeviation.computePopulationStandardDeviation(values);</b>
+&nbsp;
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertEquals(1.414213562, result, 0.000000001);</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();</b>
+<b class="fc">&nbsp;    private final PrintStream originalOut = System.out;</b>
+&nbsp;
+&nbsp;    @BeforeEach
+&nbsp;    public void setUp(){
+<b class="fc">&nbsp;        System.setOut(new PrintStream(outContent));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Test
+&nbsp;    @DisplayName(&quot;test main method&quot;)
+&nbsp;    void StandardDeviation_testMainMethod() {
+&nbsp;        // Arrange
+<b class="fc">&nbsp;        String expectedOutput = &quot;Sample StdDev = 1.5811388300841898&quot; + System.lineSeparator() +</b>
+<b class="fc">&nbsp;                &quot;Population StdDev = 2.9832867780352594&quot; + System.lineSeparator();</b>
+&nbsp;
+&nbsp;        // Act
+<b class="fc">&nbsp;        StandardDeviation.main(new String[] {});</b>
+&nbsp;
+&nbsp;        // Assert
+<b class="fc">&nbsp;        assertEquals(expectedOutput, outContent.toString());</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @AfterEach
+&nbsp;    public void tearDown() {
+<b class="fc">&nbsp;        System.setOut(originalOut);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-09-23 19:39</div>
+</div>
+</body>
+</html>
